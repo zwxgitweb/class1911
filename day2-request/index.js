@@ -3,7 +3,7 @@ const http = require('http');
 http.createServer((req, res) => {
     if (req.url == '/data' && req.method == 'GET') {
         res.end(JSON.stringify({
-            name: '张三s',
+            name: '张三ssss',
             age: 20
         }))
     }else{
