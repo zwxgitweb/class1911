@@ -5,6 +5,7 @@ let data = {
     host: 'localhost',
     method: 'get',
     path: '/',
+    sh:0
 }
 
 let req = http.request(data, (res) => {
