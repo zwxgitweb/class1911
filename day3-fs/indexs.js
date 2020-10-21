@@ -58,5 +58,6 @@ function app(a, b, c, app,appdir) {
     })
     // 拷贝a.js文件内容
     fs.copyFile(path.join(a, '/a.js'), path.join(b, '/b.js'), () => {})
+    fs.copyFile(path.join(a, '/a.js'), path.join(c, '/c.js'), () => {})
 }
 app(aurl, burl, curl, apps,appdir)
