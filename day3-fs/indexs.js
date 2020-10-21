@@ -1,6 +1,3 @@
-const {
-    diffieHellman
-} = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -34,31 +31,41 @@ const path = require('path');
 
 
 // 文件夹以及文件路径
-let appdir = path.join(__dirname, 'apps'); 
+let appdir = path.join(__dirname, 'apps');
 let aurl = path.join(__dirname, 'apps/a');
 let burl = path.join(__dirname, 'apps/b');
 let curl = path.join(__dirname, 'apps/c');
 let apps = path.join(__dirname, '/apps/app.js');
 
-function app(a, b, c, app,appdir) {
-    fs.mkdir(appdir, () => {});  //创建apps文件夹
-    fs.mkdir(a, () => {}); // 创建a文件夹
-    fs.mkdir(b, () => {}); // 创建b文件夹
-    fs.mkdir(c, () => {}); // 创建c文件夹
-    fs.writeFile(app, `conlsole.log('hello')`, () => {}); //创建app.js文件
-    //读取a文件查看有没有a.js文件 没有就添加
-    fs.readdir(a, (err, data) => {
-        for (let i = 0; i <= data.length; i++) {
-            if(data[i] !== 'a.js'){
-                fs.writeFile(path.join(a, '/a.js'), `conlsole.log('我是a')`, () => {}); // 没有a.js文件就创建a.js文件
-            }else{
-                console.log('a文件已存在'); // 有就返回已存在
-            }
-        }
+fs.mkdirSync(appdir, () => {
+
+})
+fs.mkdirSync(aurl, () => {
+
+})
+fs.mkdirSync(burl, () => {
+
+})
+fs.mkdirSync(curl, () => {
+
+})
+fs.writeFileSync(apps, `console.log('hello world')`, () => {
+
+})
+
+try {
+    fs.accessSync(path.join(aurl, '/a.js'), fs.constants.F_OK);
+} catch (err) {
+    fs.writeFile(path.join(aurl, '/a.js'), `console.log('我是a')`, () => {
+
     })
-    // 拷贝a.js文件内容
-    fs.copyFile(path.join(a, '/a.js'), path.join(b, '/b.js'), () => {})
-    fs.copyFile(path.join(a, '/a.js'), path.join(c, '/c.js'), () => {})
-    fs.copyFile(path.join(b, '/b.js'), path.join(c, '/c1.js'), () => {})
 }
-app(aurl, burl, curl, apps,appdir)
+fs.readFile(path.join(aurl, '/a.js'), (err, data) => {
+    let str = data.toString();
+    fs.writeFile(path.join(burl, '/b.js'), str, () => {
+
+    })
+    fs.writeFile(path.join(curl, '/c.js'), str, () => {
+
+    })
+})
