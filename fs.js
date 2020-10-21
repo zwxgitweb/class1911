@@ -3,7 +3,7 @@
  * @Author: Florence
  * @Date: 2020-10-21 09:11:51
  * @Last Modified By: Florence
- * @LastEditTime: 2020-10-21 10:16:11
+ * @LastEditTime: 2020-10-21 10:36:57
  */
 
 const fs = require('fs');
@@ -39,8 +39,5 @@ let data = fs.readFileSync(path.join(__dirname, 'a.js'))
 // fs.writeFile('./a.js', 'hhh', () => {
 	
 // })
-
-// let str = 'hello!hhhhhhhh';
-// fs.writeFileSync('./a.js', str);
 
 fs.appendFileSync(path.join(__dirname, 'a.js'), 'hello', 'utf8')
