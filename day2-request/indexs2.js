@@ -13,7 +13,7 @@ let req = http.request(data, (res) => {
         console.log(data.toString());
     })
     res.on('end', (data) => {
-        console.log('...........');
+        console.log('.........');
     })
 })
 
