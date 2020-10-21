@@ -10,10 +10,10 @@ http.createServer((req, res) => {
         list.replace(obj, (i, one, two) => {
             sd[one] = two
         })
-        res.end(sd.name+sd.age)
+        res.end(sd.name + sd.age)
     }
-   
-}).listen(3000,()=>{
+
+}).listen(3000, () => {
     console.log('连接成功')
 })
 
