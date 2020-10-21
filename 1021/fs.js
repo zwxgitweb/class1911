@@ -65,16 +65,18 @@ fs.access('app', (err) => {
         fs.access('./app/a/a.js', (err) => {
             if (err) {
                 fs.open('./app/a', () => {
-                    fs.writeFile('./app/a/a.js', '12323', (err) => {
-                        console.log('创建成功', 'aaaaaaaa');
-                        function copy(source, target) {
-                            fs.readFile(source, (err, data) => {
-                                fs.writeFile(target, data, err => {
-                                    console.log('拷贝成功')
-                                })
-                            })
-                        }
-                        copy('./app/a/a.js', './app/b/b.js')
+                    fs.writeFile('./app/a/a.js', '12323qeeeee', (err) => {
+                        // function copy(source, target) {
+                        //     fs.readFile(source, (err, data) => {
+                        //         fs.writeFile(target, data, err => {
+                        //             console.log('拷贝成功')
+                        //         })
+                        //     })
+                        // }
+                        // copy('./app/a/a.js', './app/b/b.js')
+                        fs.copyFile('./app/a/a.js', './app/b/b.js', () => {
+                            console.log('拷贝');
+                        })
                     })
                 })
 
