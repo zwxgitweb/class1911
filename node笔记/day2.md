@@ -7,6 +7,11 @@
     + listen
         端口号
 
+## path 模块
+
+    # path.resolve
+        path.resolve(__dirname,'文件名') //找出文件的绝对路径
+
 ## fs 模块
 
     + # fs.writeFile(filename, data, [options], [callback(err)])
