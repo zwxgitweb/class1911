@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./less.css">
+</head>
+
+<body>
+    <div class="main">
+        <ul class="left">
+
+        </ul>
+        <div class="right">
+            <!-- <ul>
+                <h3>猜你喜欢</h3>
+                <li>
+                    <dl>
+                        <dt><img src="./m_details_brand_05.png" alt=""></dt>
+                        <dd>床品套件</dd>
+                    </dl>
+                </li>
+            </ul> -->
+        </div>
+    </div>
+
+    <script>
+        let lefts = document.querySelector('.left');
+        let right = document.querySelector('.right');
+        fetch(`http://${location.host}/all`).then((res) => {
+            return res.text()
+        }).then((res) => {
+            let data = JSON.parse(res);
+            console.log(JSON.parse(res));
+            left(data);
+            rights(data[0].content)
+        })
+
+        //左侧
+        function left(data) {
+            let str = '';
+            let str2 = '';
+            data.forEach((item, i) => {
+                str += `<li cid='${i}' class='${i == 0 ? 'color' : ''}'>${item.tab}</li>`;
+            });
+            lefts.innerHTML = str;
+            let li_list = document.querySelectorAll('.left li');
+            clicks(li_list);
+        }
+
+        //右侧
+        function rights(data) {
+            let str = '';
+            data.forEach(item => {
+                str += `<ul>
+                <h2>${item.titel}</h2>
+                <li>`
+                item.shops.forEach(item => {
+                    str += `
+                    <dl>
+                        <dt><img src="${item.img}" alt=""></dt>
+                        <dd>${item.info}</dd>
+                    </dl>
+                `
+                })
+                str += `</li>
+                </ul >`
+            })
+            right.innerHTML = str;
+        }
+
+        function clicks(li_list) {
+            li_list.forEach(item => {
+                lefts.onclick = function (e) {
+                    let num = e.target.getAttribute('cid');
+                    li_list.forEach(item => {
+                        item.classList.remove('color');
+                    })
+                    e.target.classList.add('color');
+                    fetch(`http://${location.host}/one?num=${num}`).then((res) => {
+                        return res.text()
+                        console.log(res);
+                    }).then((res) => {
+                        let data = JSON.parse(res);
+                        rights(data) 
+                    })
+                }
+            })
+        }
+
+
+
+    </script>
+</body>
+
+</html>
