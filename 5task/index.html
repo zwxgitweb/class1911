@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 300px;
+            height: 500px;
+            display: flex;
+            padding: x(20);
+            /* background-color: #cccccc; */
+        }
+
+        .l {
+            width: 50px;
+            line-height: 80;
+        }
+        p,dd{
+            line-height:50px;
+        }
+        dl{
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" style="display: flex;width: 300px;height: 400px; overflow: hidden;border: #cccccc 1px solid;">
+        <div class="l" style="width:50px;line-height: 30px;background-color: #cccccc;text-align: center;">
+
+        </div>
+        <div class="r" style="flex: 1;">
+        </div>
+    </div>
+
+    <script>
+        let add = null;
+        fetch('http://' + location.host + '/api/list')
+            .then(res => {
+                return res.text()
+            })
+            .then(res => {
+                let add = JSON.parse(res);
+                let l = document.querySelector('.l');
+                let r = document.querySelector('.r');
+                let str = '';
+                add.box.map(i => {
+                    str += `
+                        <p>${i.tab}</p>
+                   `;
+                    //    console.log(i.con)
+                })
+                l.innerHTML += str;
+                let p = document.querySelectorAll('p');
+                function fu(ind) {
+                    let str2 = '';
+                    add.box[ind].con.map(i => {
+                        str2 += `<p>${i.tab}</p> <div style="display: flex;  flex-wrap: wrap;">`
+                        i.bot.map(i => {
+                            console.log(i.img)
+                            str2 += `
+                            <dl style="width:100px  margin: 0;padding: 0; text-align: center;">
+                                <dt><img src="${i.img}" alt="" style='width:50px;height:'50px''></dt>
+                                <dd>${i.name}</dd>
+                            </dl>
+                            `
+                        })
+                        str2 += `</div>`
+                    })
+                    r.innerHTML = str2
+                }
+                fu(0)
+                console.log(p)
+                p.forEach((i, ind) => {
+                    i.onclick = function () {
+                        fu(ind)
+                    }
+                })
+            })
+    </script>
+</body>
+
+</html>

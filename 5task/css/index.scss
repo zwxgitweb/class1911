@@ -1,0 +1,29 @@
+
+@function x($px) {
+    @return $px / 75 * 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+html,body,.box{
+    width: 100%;
+    height: 100%;
+    background-color: #bd1f1f;
+}
+.box{
+    display: flex;
+    padding: x(20);
+    background-color: #ac0d0d;
+}
+// .l{
+//     ol{
+//         li{
+
+//         }
+//     }
+// }
+
+

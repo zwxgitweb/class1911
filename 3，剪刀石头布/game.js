@@ -24,5 +24,5 @@ module.exports = function (player1) {
     } else {
         result = '很遗憾输了'
     }
-    return result
+    return result 
 }
