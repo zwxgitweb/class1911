@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden !important;
+            background-color: #d4d3d3;
+        }
+
+        .body {
+            overflow-x: hidden !important;
+            max-width: 25rem;
+            height: auto;
+        }
+
+        .body .box {
+            width: 100%;
+            overflow: hidden;
+            padding: 0.625rem;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .body .box nav {
+            flex: 1;
+        }
+
+        .body .box nav .uls {
+            width: 100%;
+        }
+
+        .body .box nav .uls>li {
+            height: 3.75rem;
+            line-height: 3.75rem;
+            padding-right: 1.25rem;
+            box-sizing: border-box;
+            color: #000;
+            font-size: 0.9375rem;
+            text-align: center;
+        }
+
+        .body .box main {
+            flex: 3;
+        }
+
+        .body .box main .mivremj {
+            width: 100%;
+        }
+
+        .body .box main .mivremj>li {
+            margin-bottom: 0.9375rem;
+            padding: 0.625rem 0.9375rem;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-radius: 0.625rem;
+        }
+
+        .body .box main .mivremj>li>p {
+            height: 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+        }
+
+        .body .box main .mivremj>li .mdocwwe {
+            width: 100%;
+        }
+
+        .body .box main .mivremj>li .mdocwwe>dl {
+            margin-right: 11px;
+            display: inline-block;
+            width: 28%;
+            margin-bottom: 5px;
+        }
+
+        .body .box main .mivremj>li .mdocwwe>dl>dt {
+            width: 100%;
+        }
+
+        .body .box main .mivremj>li .mdocwwe>dl>dt>img {
+            margin: 0 auto;
+            display: block !important;
+            width: 3.125rem;
+            height: 3.125rem;
+        }
+
+        .body .box main .mivremj>li .mdocwwe>dl>dd {
+            font-size: 0.8125rem;
+            width: 100%;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            text-align: center;
+        }
+
+        .body .box main .mivremj>li .mdocwwe>dl:nth-child(3n) {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="box">
+            <nav>
+                <ul class="uls">
+                </ul>
+            </nav>
+            <main>
+                <ul class="mivremj">
+                </ul>
+            </main>
+        </div>
+    </div>
+</body>
+<script>
+    let uls = document.querySelector('.uls')
+    let ols = document.querySelector('.mivremj')
+    fetch('http://' + location.host + '/list/data').then(res => {
+        return res.text()
+    }).then(res => {
+        let data = JSON.parse(res).list
+        let str = ''
+        data.map(function (it) {
+            console.log(it);
+            str += `<li data-id="${it.id}">${it.name}</li>`
+        })
+        uls.innerHTML = str
+        let html = ''
+        data[0].children.map(function (it) {
+            console.log(it.child);
+            html += `<li data-id="${it.id}">
+                <p>${it.tit}</p><div class="mdocwwe">`
+            it.child.map(function (item) {
+                html += `<dl><dt><img src="${item.img}" alt=""></dt><dd>${item.name}</dd></dl>`
+            })
+            html += `</div></li>`
+        })
+        ols.innerHTML = html;
+        let ulis = document.querySelectorAll('.uls li')
+        for (let i = 0; i < ulis.length; i++) {
+            ulis[i].onclick = function () {
+                fetch('http://' + location.host + '/list/data?id=' + `${data[i].id}`).then(res => {
+                    return res.text()
+                }).then(res => {
+                    let data = JSON.parse(res).children
+                    let html = ''
+                    data.map(it => {
+                        console.log(it);
+                        html += `<li data-id="${it.id}">
+                                <p>${it.tit}</p><div class="mdocwwe">`
+                        it.child.map(item => {
+                            html += `<dl><dt><img src="${item.img}" alt=""></dt><dd>${item.name}</dd></dl>`
+                        })
+                        html += `</div></li>`
+                    })
+                    ols.innerHTML = html;
+                })
+            }
+        }
+    })
+
+
+</script>
+
+</html>
