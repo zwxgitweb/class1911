@@ -151,7 +151,7 @@
         let ulis = document.querySelectorAll('.uls li')
         for (let i = 0; i < ulis.length; i++) {
             ulis[i].onclick = function () {
-                fetch('http://' + location.host + '/list/data?id=' + `${data[i].id}`).then(res => {
+                fetch('http://' + location.host + '/list?id=' + `${data[i].id}`).then(res => {
                     return res.text()
                 }).then(res => {
                     let data = JSON.parse(res).children
