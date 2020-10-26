@@ -4,7 +4,7 @@ const bodys = require('koa-bodyparser');  // 接受post请求数据
 const app = new Koa();
 const router = new Router();
 app.use(bodys());
-app.use(router.routes());
+app.use(router.routes())
 
 
 router.get('/list', async (ctx) => {
