@@ -30,7 +30,7 @@
         let lefts = document.querySelector('.left');
         let right = document.querySelector('.right');
         fetch(`http://${location.host}/all`).then((res) => {
-            return res.text()
+            return res.text();
         }).then((res) => {
             let data = JSON.parse(res);
             console.log(JSON.parse(res));
@@ -41,13 +41,11 @@
         //左侧
         function left(data) {
             let str = '';
-            let str2 = '';
             data.forEach((item, i) => {
                 str += `<li cid='${i}' class='${i == 0 ? 'color' : ''}'>${item.tab}</li>`;
             });
             lefts.innerHTML = str;
-            let li_list = document.querySelectorAll('.left li');
-            clicks(li_list);
+            clicks();
         }
 
         //右侧
@@ -70,8 +68,9 @@
             })
             right.innerHTML = str;
         }
-
-        function clicks(li_list) {
+        //点击渲染数据
+        function clicks() {
+            let li_list = document.querySelectorAll('.left li');
             li_list.forEach(item => {
                 lefts.onclick = function (e) {
                     let num = e.target.getAttribute('cid');
@@ -80,11 +79,11 @@
                     })
                     e.target.classList.add('color');
                     fetch(`http://${location.host}/one?num=${num}`).then((res) => {
-                        return res.text()
+                        return res.text();
                         console.log(res);
                     }).then((res) => {
                         let data = JSON.parse(res);
-                        rights(data) 
+                        rights(data); 
                     })
                 }
             })

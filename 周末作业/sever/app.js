@@ -8,22 +8,17 @@ let app = http.createServer((req, res) => {
     let num = url.parse(req.url, true).query.num;
     if (urls === '/favicon.ico') {
         res.end('');
-    }
-    if (urls === '/all') {
+    } else if (urls === '/all') {
         res.end(JSON.stringify(data.list));
-
-    }
-    if (urls === '/one') {
+    } else if (urls === '/one') {
         res.end(JSON.stringify(data.list[num].content));
-    }
-
-    if (urls === '/') {
+    } else if (urls === '/') {
         fs.createReadStream('../web/index.html').pipe(res);
     } else {
         let url = decodeURIComponent(req.url);
         fs.readFile(path.join('../web', url), (err, data) => {
             if (!err) {
-                res.end(data)
+                res.end(data);
             }
         })
     }
