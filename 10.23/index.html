@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="game">
+        <div class="result"></div>
+        <div class="types">
+            <span>石头</span>
+            <span>剪刀</span>
+            <span>布</span>
+        </div>
+    </div>
+
+    <script>
+        let els = document.querySelectorAll('span');
+        let resultEl = document.querySelector('.result');
+        let obj = {
+            rock: els[0],
+            paper: els[1],
+            scisors: els[2]
+        };
+        Object.keys(obj).forEach((item, index) => {
+            
+        })
+    </script>
+</body>
+</html>
