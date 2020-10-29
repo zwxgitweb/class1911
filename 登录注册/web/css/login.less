@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+input,
+button {
+    outline: none;
+    border: none;
+}
+#dd{
+    width: 320px;
+    height: 370px;
+    margin: 80px auto;
+    border-radius: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px 5px rgb(235, 235, 235);
+}
+.main {
+    width: 320px;
+    height: 350px;
+    margin: 80px auto;
+    border-radius: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px 5px rgb(235, 235, 235);
+    
+
+    &>ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin-bottom: 25px;
+        position: relative;
+    i {
+        font-size: 30px;
+        position: absolute;
+        top: -27px;
+        left: -29px;
+        color: rgb(76, 159, 228);
+        cursor: pointer;
+    }
+
+        &>li {
+            flex: 1;
+            height: 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 2px solid rgb(76, 159, 228);
+            box-sizing: border-box;
+            cursor: pointer;
+
+            &>span {
+                color: rgb(76, 159, 228);
+                margin-left: 10px;
+            }
+        }
+
+        &>P {
+            flex: 1;
+            border-bottom: 2px solid rgb(232, 233, 233);
+        }
+    }
+
+    &>p {
+
+        input {
+            width: 100%;
+            height: 45px;
+            border: 2px solid rgb(235, 235, 235);
+            box-sizing: border-box;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        #pwd {
+            margin-top: 15px;
+            // margin-bottom: 25px;
+        }
+        #pwds {
+            margin-top: 15px;
+            // margin-bottom: 25px;
+        }
+
+        button {
+            width: 100%;
+            height: 45px;
+            font-size: 16px;
+            color: #fff;
+            background: rgb(76, 159, 228);
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    }
+
+    &>li {
+        width: 100%;
+        height: 25px;
+        font-size: 13px;
+        color: red;
+        text-align: center;
+        line-height: 25px;
+    }
+
+    &>div {
+        width: 100%;
+        font-size: 15px;
+        color: rgb(76, 159, 228);
+        display: flex;
+        justify-content: space-between;
+
+        &>span {
+            cursor: pointer;
+
+        }
+    }
+}

@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+input,
+button {
+  outline: none;
+  border: none;
+}
+#dd {
+  width: 320px;
+  height: 370px;
+  margin: 80px auto;
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px 5px #ebebeb;
+}
+.main {
+  width: 320px;
+  height: 350px;
+  margin: 80px auto;
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px 5px #ebebeb;
+}
+.main > ul {
+  width: 100%;
+  height: auto;
+  display: flex;
+  margin-bottom: 25px;
+  position: relative;
+}
+.main > ul i {
+  font-size: 30px;
+  position: absolute;
+  top: -27px;
+  left: -29px;
+  color: #4c9fe4;
+  cursor: pointer;
+}
+.main > ul > li {
+  flex: 1;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #4c9fe4;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.main > ul > li > span {
+  color: #4c9fe4;
+  margin-left: 10px;
+}
+.main > ul > P {
+  flex: 1;
+  border-bottom: 2px solid #e8e9e9;
+}
+.main > p input {
+  width: 100%;
+  height: 45px;
+  border: 2px solid #ebebeb;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.main > p #pwd {
+  margin-top: 15px;
+}
+.main > p #pwds {
+  margin-top: 15px;
+}
+.main > p button {
+  width: 100%;
+  height: 45px;
+  font-size: 16px;
+  color: #fff;
+  background: #4c9fe4;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.main > li {
+  width: 100%;
+  height: 25px;
+  font-size: 13px;
+  color: red;
+  text-align: center;
+  line-height: 25px;
+}
+.main > div {
+  width: 100%;
+  font-size: 15px;
+  color: #4c9fe4;
+  display: flex;
+  justify-content: space-between;
+}
+.main > div > span {
+  cursor: pointer;
+}

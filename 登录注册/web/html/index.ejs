@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <div class="main">
+        <ul>
+            <li>
+                <span>普通登录</span>
+            </li>
+            <p></p>
+        </ul>
+        <p><input type="text" placeholder="请输入用户名" id="user"></p>
+        <p><input type="password" placeholder="请输入密码" id="pwd"></p>
+        <li class="cuo"></li>
+        <p><button id="login">登录</button></p>
+        <div><span>忘记密码？</span><span class="signin">新用户注册</span></div>
+    </div>
+    <script src="../js/jquery.js"></script>
+    <script>
+        $(() => {
+            function ajax(method, url, data) {
+                return new Promise((res, rej) => {
+                    $.ajax({
+                        method: method,
+                        url: url,
+                        data: data,
+                    }).done((msg) => {
+                        res(msg);
+                    })
+                })
+            }
+
+            //点击登录
+            let num = 0;
+            $('#login').click(function () {
+                let user = $('#user').val();
+                let pwd = $('#pwd').val();
+                if (user !== '' && pwd !== '') {
+                    ajax('POST', 'http://localhost:9595/find', { user: user, pwd: pwd }).then(req => {
+                        if (req.code === 1) {
+                            alert('登录成功')
+                            location.href = 'http://localhost:9595/';
+                        } else if (req.code === 0) {
+                            num++;
+                            if (num == 3) {
+                                timer(5000, 3000)
+                                return;
+                            } else if (num === 6) {
+                                timer(1000 * 60, 3000)
+                                return;
+                            }
+                            $('.cuo').html('密码错误');
+                            console.log(num);
+                            app()
+                        } else {
+                            $('.cuo').html('没有该用户请注册');
+                            app()
+                        }
+                    });
+                } else {
+                    $('.cuo').html('用户名和密码不能为空');
+                    app()
+                }
+            })
+
+            //点击跳转注册页面
+            $('.signin').click(function () {
+                location.href = 'http://localhost:9595/signin';
+            })
+
+            //时间
+            function timer(sec, nums) {
+                $('#pwd')[0].setAttribute('disabled', '');
+                $('#login')[0].setAttribute('disabled', '');
+                setTimeout(function () {
+                    $('#pwd')[0].removeAttribute('disabled');
+                    $('#login')[0].removeAttribute('disabled');
+                    if (num == 3) {
+                        num = num;
+                    } else if (num == 6) {
+                        num = 0
+                    }
+                }, sec)
+                if (num == 3) {
+                    $('.cuo').html('密码错误次数已达3次，请5秒后重试');
+                } else if (num == 6) {
+                    $('.cuo').html('密码错误次数已达上限，请1分钟后重试');
+                }
+                setTimeout(function () {
+                    $('.cuo').html('');
+                }, nums)
+            }
+
+            //清空提示
+            function app() {
+                $('#user').on('input', function () {
+                    let val = $(this).val();
+                    if (val !== '') {
+                        $('.cuo').html('');
+                    }
+                })
+                $('#pwd').on('input', function () {
+                    let val = $(this).val();
+                    if (val == '' || val !== '') {
+                        $('.cuo').html('');
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

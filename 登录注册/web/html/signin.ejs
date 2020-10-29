@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../fonts1/iconfont.css">
+</head>
+
+<body>
+    <div class="main" id="dd">
+        <ul>
+            <i class="icon iconfont icon-angle-left"></i>
+
+            <li>
+                <span>普通注册</span>
+            </li>
+            <p></p>
+        </ul>
+        <p><input type="text" placeholder="请输入用户名" id="user"></p>
+        <p><input type="password" placeholder="请输入密码" id="pwd"></p>
+        <p><input type="password" placeholder="请再次确认密码" id="pwds"></p>
+
+        <li class="cuo"></li>
+        <p><button id="signin">注册</button></p>
+    </div>
+    <script src="../js/jquery.js"></script>
+    <script>
+        $(() => {
+            function ajax(method, url, data) {
+                return new Promise((res, rej) => {
+                    $.ajax({
+                        method: method,
+                        url: url,
+                        data: data,
+                    }).done((msg) => {
+                        res(msg);
+                    })
+                })
+            }
+
+            //点击返回登录页
+            $('i').click(function () {
+                location.href = 'http://localhost:9595/login';
+            })
+
+            //点击注册
+            $('#signin').click(function () {
+                let user = $('#user').val();
+                let pwd = $('#pwd').val();
+                let pwds = $('#pwds').val();
+                if (pwd === pwds) {
+                    if (user !== '' && pwd !== '' && pwds !== '') {
+                        ajax('POST', 'http://localhost:9595/add', { user: user, pwd: pwd }).then(req => {
+                            console.log(req);
+                            if (req.code === 1) {
+                                alert('注册成功请前往登录')
+                                location.href = 'http://localhost:9595/login';
+                            } else {
+                                $('.cuo').html('该用户已存在请前往登录');
+                                app();
+                            }
+                        });
+                    } else {
+                        $('.cuo').html('用户名和密码不能为空');
+                        app()
+                    }
+                } else {
+                    $('.cuo').html('密码不一致重新确认输入');
+                    app()
+                }
+
+            })
+
+            //清空提示
+            function app() {
+                $('#user').on('input', function () {
+                    let val = $(this).val();
+                    if (val !== '') {
+                        $('.cuo').html('');
+                    }
+                })
+                $('#pwd').on('input', function () {
+                    let val = $(this).val();
+                    if (val == '' || val !== '') {
+                        $('.cuo').html('');
+                    }
+                })
+                $('#pwds').on('input', function () {
+                    let val = $(this).val();
+                    if (val == '' || val !== '') {
+                        $('.cuo').html('');
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
