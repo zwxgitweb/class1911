@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor() {
+                this.ename = 'zs';
+                this.eage = 22;
+                this.ehobby = [4,5,6];
+            }
+        }
+        class Son extends Person{
+            constructor(){
+                // Son()
+                super();
+                this.name='zz';
+                this.age = 2;
+                this.hobby = ['1','2','3'];
+            }
+            getPerson(){
+                return  '姓名：'+this.ename+'年龄：'+this.eage+'爱好：'+this.ehobby.join('')
+            }
+            getSon(){
+                return  '姓名：'+this.name+'年龄：'+this.age+'爱好：'+this.hobby.join('')
+            }
+        }
+       let p = new Person();
+       let s = new Son();
+       console.log(s.getPerson(),'===========',s.getSon())
+        
+    </script>
+</body>
+
+</html>

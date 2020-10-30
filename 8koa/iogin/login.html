@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <p>用户名：<input type="text"></p>
+    <p>密码：<input type="text"></p>
+    <button>登录</button>
+    <button>注册</button>
+
+    <script>
+        let but = document.querySelectorAll('button');
+        let inp = document.querySelectorAll('input');
+        but[0].onclick = function () {
+            let userval = inp[0].value;
+            let pwdval = inp[1].value;
+            let params = {
+                user: userval,
+                pwd: pwdval
+            }
+            fetch('/api/login', {
+                body: JSON.stringify(params),
+                method: 'POST',
+            }).then(text => {
+                return text.text();
+            }).then(res => {
+                res = JSON.parse(res)
+                if (res.code) {
+                    alert(res.msg);
+                    location.href = "http://localhost:3000";
+                } else {
+                    alert(res.msg + '，请重新输入')
+                }
+            })
+        }
+        but[1].onclick = function () {
+            let userVal = inp[0].value;
+            let pwdVal = inp[1].value;
+			let params = {
+				user: userVal,
+				pwd: pwdVal
+			};
+			fetch('/api/register', {
+				body: JSON.stringify(params),
+				method: "POST",
+				headers: {
+					'content-type': 'application/json'
+				}
+			}).then(text => {
+				return text.text();
+			}).then(res => {
+				console.log(res);
+			})
+        }
+    </script>
+</body>
+
+</html>

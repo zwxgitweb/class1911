@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <input type="text">
+    <button>登录</button>
+    <script>
+        let but = document.querySelector('button');
+        let inp = document.querySelectorAll('input');
+        but.onclick = function () {
+            if (inp[0].value && inp[1].value) {
+                fetch('/userlogin').then(text => {
+                    return text.text();
+                }).then(res => {
+                    res = JSON.parse(res);
+                    console.log(res.code)
+                    if (res.code === 1) {
+                        // fetch('/')
+                        location.href="http://localhost:3000"
+                    } else {
+                        alert('重新登录')
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>
