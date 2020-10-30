@@ -37,7 +37,7 @@ function selectLogin(params) {
 
 function registerUser(params) {
 	return new Promise((a, b) => {
-		connection.query(`INSERT INTO userInfo (user, pwd) VALUES ('${params.user}', '${params.pwd}')`,
+		connection.query(`INSERT INTO aaa (user, pwd)  VALUES('${params.user}','${params.pwd}')`,
 			(err, reslut) => {
 				if (err) {
 					b({

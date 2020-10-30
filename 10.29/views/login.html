@@ -50,6 +50,8 @@
 		registerBtn.onclick = function () {
 			let userVal = userBtn.value;
 			let pwdVal = pwdBtn.value;
+			
+			console.log(userVal,pwdVal)
 			let params = {
 				user: userVal,
 				pwd: pwdVal
@@ -63,7 +65,8 @@
 			}).then(text => {
 				return text.text();
 			}).then(res => {
-				console.log(res);
+				res = JSON.parse(res);
+				alert(res.msg);
 			})
 		}
 	</script>
