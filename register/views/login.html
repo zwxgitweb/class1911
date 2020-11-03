@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="./static/style.css">
+</head>
+<body>
+	<div class="login">
+		<p>
+			用户名：<input type="text" class="user">
+		</p>
+		<p>
+			密码：<input type="password" class="pwd">
+		</p>
+		<button class="loginBtn">登陆</button>
+		<button class="registerBtn">注册</button>
+	</div>
+	<script>
+		let loginBtn = document.querySelector('.loginBtn');
+		let registerBtn = document.querySelector('.registerBtn');
+		let userBtn = document.querySelector('.user');
+		let pwdBtn = document.querySelector('.pwd');
+		// 点击登陆按钮
+		loginBtn.onclick = function () {
+			let userVal = userBtn.value;
+			let pwdVal = pwdBtn.value;
+			let params = {
+				user: userVal,
+				pwd: pwdVal
+			};
+			fetch('/api/login', {
+				body: JSON.stringify(params),
+				method: "POST",
+				headers: {
+					// 'user-agent': 'Mozilla/4.0 MDN Example',
+					'content-type': 'application/json'
+				},
+			}).then(text => {
+				return text.text();
+			}).then(res => {
+				res = JSON.parse(res);
+				if (res.code) {
+					alert(res.msg);
+					location.href = "http://localhost:3000";
+				} else {
+					alert(res.msg + ",请重新输入");
+				}
+			})
+		}
+		// 点击注册按钮
+		registerBtn.onclick = function () {
+			let userVal = userBtn.value;
+			let pwdVal = pwdBtn.value;
+			let params = {
+				user: userVal,
+				pwd: pwdVal
+			};
+			fetch('/api/register', {
+				body: JSON.stringify(params),
+				method: "POST",
+				headers: {
+					'content-type': 'application/json'
+				}
+			}).then(text => {
+				return text.text();
+			}).then(res => {
+				console.log(res);
+			})
+		}
+	</script>
+</body>
+</html>
