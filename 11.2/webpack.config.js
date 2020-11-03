@@ -35,7 +35,7 @@ module.exports = {
     plugins: [
         new htmlpl({
             template: './sctipt/index.html',
-            filename: './web_ys.html',
+            filename: './index.html',
         }),
         new csspl({
             filename: './web_ys.css'

@@ -3,7 +3,7 @@ const fs = require('fs');
 
 let data = Mock.mock({
     'luinsd|5': [{
-        'imgs': '@img(375x150,@color)',
+        'imgs': '@img(375x150)',
         'id': '@id'
     }],
     'listac|5': [{

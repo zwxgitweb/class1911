@@ -1,5 +1,6 @@
 import '../css/index.css'
 import Axios from 'axios';
+import Swiper from 'swiper';
 import 'swiper/css/swiper.css';
 
 Axios.get('/api/list').then(res => {
@@ -14,39 +15,41 @@ function dsnkd(lib, data) {
     let usacsu = document.querySelector('.usacsu');
     let dfuinhdwufv = document.querySelector('.dfuinhdwufv');
 
-    let scr_1='';
-    lib.forEach((item, index)=>{
-        scr_1 +=`<div class="swiper-slide"><img src="${item.imgs}" alt=""></div>`;
+    let scr_1 = '';
+    lib.forEach((item, index) => {
+        scr_1 += `<div class="swiper-slide"><img src="${item.imgs}" alt=""></div>`;
     })
-    swiper_wrapper.innerHTML=scr_1
+    swiper_wrapper.innerHTML = scr_1
 
-    let scr_2='';
-    data.forEach((item, index)=>{
-        scr_2 +=`<li>${item.namejn}</li>`;
+    let scr_2 = '';
+    data.forEach((item, index) => {
+        scr_2 += `<li>${item.namejn}</li>`;
     })
-    usacsu.innerHTML=scr_2
+    usacsu.innerHTML = scr_2
 
-   
-    dfuinhdwufv.innerHTML=data[0].dcbdu
+
+    dfuinhdwufv.innerHTML = data[0].dcbdu
 }
 
-function dfda(data){
-    let usacsu_li = document.querySelector('.usacsu li');
+function dfda(data) {
+    let usacsu_li = document.querySelectorAll('.usacsu li');
     let dfuinhdwufvs = document.querySelector('.dfuinhdwufv');
-    usacsu_li[0].style='font-weight: 900;color: red;'
 
-    usacsu_li.forEach((item, index)=>{
+    usacsu_li[0].style = 'font-weight: 900;color: red;'
+
+    usacsu_li.forEach((item, index) => {
         item.onclick=function(){
-            usacsu_li.forEach((item, index)=>{
-                item.style='';
+            usacsu_li.forEach((ind, indx)=>{
+                usacsu_li[indx].style='font-weight: 400;color: #000;'
             })
-            item[0].style='font-weight: 900;color: red;';
+
+            usacsu_li[index].style='font-weight: 900;color: red;';
 
             dfuinhdwufvs.innerHTML=data[index].dcbdu;
         }
     })
     new Swiper('.swiper-container', {
-		autoplay: true,
-		loop: true
-	})
+        autoplay: true,
+        loop: true
+    })
 }
