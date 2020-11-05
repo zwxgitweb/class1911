@@ -8,9 +8,7 @@ type n = number;
 type s = string;
 type o = object;
 
-let dsa=document.querySelector('body');
-
-let ds=document.querySelector('#qds');
+let dsa = document.querySelector('body');
 let date: Array<s | n | o> = [
     {
         name: 'zs',
@@ -26,11 +24,23 @@ let date: Array<s | n | o> = [
     },
 ]
 
-console.log(aaa,bbb,ccc,ddd)
+console.log(aaa, bbb, ccc, ddd)
 
-let str:s='';
-for(let i in date){
-    str +=`date[i]`
-}
+// let str: s = '';
+// for (let i in date) {
+//     str += `${date[i]}`
+//     console.log(date[i])
+// }
+// console.log(str)
 
 // dsa.innerHTML +=str
+
+// let hsi:<o>=setTimeout(()=>{
+
+// })
+
+
+// let fun: () => {}
+// fun = (){
+
+// }
