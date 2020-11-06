@@ -1,17 +1,52 @@
+import '../css/str.css'
+fetch('/add').then((req) => {
+    return req.text()
+}).then((req) => {
+    req = JSON.parse(req)
+
+    let todo = document.querySelector('#todolist');
+    let srew = '';
+
+    req.forEach((sem, inds) => {
+        srew += `<li draggable="true" id='${sem.id}'>
+                   <input type="checkbox" >
+                   <p id="p-1">${sem.name}</p>
+                   <a href="javascript:remove(1)">-</a>
+                </li>`
+    });
+    todo.innerHTML = srew;
+    bhcnda()
+    ngrmfd()
+})
 
 function bhcnda() {
     let title = document.querySelector('#title');
-    let todolist = document.querySelector('#todolist');
 
     //点击渲染
     title.onkeydown = (e) => {
         //判断成立条件
         if (e.keyCode == 13 && title.value !== '') {
-            todolist.innerHTML += `<li draggable="true">
-            <input type="checkbox" >
-            <p id="p-1">${title.value}</p>
-            <a href="javascript:remove(1)">-</a>
-        </li>`
+
+            let val = title.value;
+            fetch('/tian?val=' + val).then((req) => {
+                return req.text()
+            }).then((req) => {
+                req = JSON.parse(req)
+            
+                let todo = document.querySelector('#todolist');
+                let srew = '';
+            
+                req.forEach((sem, inds) => {
+                    srew += `<li draggable="true" id='${sem.id}'>
+                               <input type="checkbox" >
+                               <p id="p-1">${sem.name}</p>
+                               <a href="javascript:remove(1)">-</a>
+                            </li>`
+                });
+                todo.innerHTML = srew;
+                bhcnda()
+                ngrmfd()
+            })
             //点击后input为空
             title.value = '';
             nfdsf()
@@ -28,16 +63,29 @@ function bhcnda() {
             a.onclick = () => {
                 //点击删除
                 todolists.removeChild(todolist_li[ind]);
+                fetch('/add').then((req) => {
+                    return req.text()
+                }).then((req) => {
+                    req = JSON.parse(req)
+
+                    let ids=todolist_li[ind].getAttribute('id')
+                    fetch('/shan?val=' + ids).then((req) => {
+                        return req.text()
+                    })
+                })
+
                 nda()
             }
         });
-        //
+
+
+
         todolist_inp.forEach((b, ind) => {
             b.onclick = () => {
                 //点击input，下渲染
                 let donelists = document.querySelector('#donelist');
                 let stew = todolist_li[ind].innerHTML;
-                donelists.innerHTML += '<li>' + stew + '</li>';
+                donelists.innerHTML += '<li >' + stew + '</li>';
                 //点击删除
                 todolists.removeChild(todolist_li[ind]);
                 nda()
@@ -63,7 +111,7 @@ function bhcnda() {
         }
 
     }
-
+    nfdsf()
 
     function mdofm() {
         let donelists = document.querySelector('#donelist');
@@ -76,6 +124,18 @@ function bhcnda() {
             a.onclick = () => {
                 //点击删除
                 donelists.removeChild(donelist_li[ind]);
+
+                fetch('/add').then((req) => {
+                    return req.text()
+                }).then((req) => {
+                    req = JSON.parse(req)
+
+                    let ids=donelist_li[ind].getAttribute('id')
+
+                    fetch('/shan?val=' + ids).then((req) => {
+                        return req.text()
+                    })
+                })
                 nda()
             }
         });
@@ -90,8 +150,8 @@ function bhcnda() {
                 nda()
             }
         })
-        function nda() {
 
+        function nda() {
             //获取的个数
             let todolist_lix = document.querySelectorAll('#todolist li');
             let donelist_lix = document.querySelectorAll('#donelist li');
@@ -99,9 +159,21 @@ function bhcnda() {
             let donecount = document.querySelector('#donecount');
             todocount.innerHTML = todolist_lix.length;
             donecount.innerHTML = donelist_lix.length;
+
             nfdsf()
         }
 
     }
+    mdofm()
 }
-bhcnda()
+
+function ngrmfd() {
+
+    //获取的个数
+    let todolist_lix = document.querySelectorAll('#todolist li');
+    let donelist_lix = document.querySelectorAll('#donelist li');
+    let todocount = document.querySelector('#todocount');
+    let donecount = document.querySelector('#donecount');
+    todocount.innerHTML = todolist_lix.length;
+    donecount.innerHTML = donelist_lix.length;
+}
