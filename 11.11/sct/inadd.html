@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./addcss/index.css">
+</head>
+
+<body>
+    <main>
+        <p>选择账目 <input type="text" class="accounts"></p>
+        <p>填写费用 <input type="text" class="cost" oninput="value=value.replace(/[^\d-]/g,'')"></p>
+        <div class="dattea"></div>
+        <textarea name="" id="" cols=40" rows="10" placeholder="  请写备注"></textarea>
+
+        <div class='clock'>
+            <button class="preserve">保存</button>
+            <button class="abolish">取消</button>
+        </div>
+    </main>
+    <footer>
+        <a href="./inadd.html">
+            <p>添加账单</p>
+        </a>
+        <a href="./inexa.html">
+            <p>查看账单</p>
+        </a>
+    </footer>
+</body>
+<script src="./js/add.js"></script>
+
+</html>

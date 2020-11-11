@@ -1,21 +1,3 @@
-//  const mysql = require('mysql');
-//  let connection = mysql.createConnection({
-//      port: 3306,
-//      password: 'root',
-//      user: 'root',
-//      database: 'userlist',
-//      host: 'localhost'
-//  })
-//  // 检测数据库链接状态
-//  connection.connect(err => {
-//      if (err) {
-//          console.log(err)
-//      } else {
-//          console.log('connection is success')
-//      }
-//  })
- 
-
 const path = require('path');
 const htmlpl = require('html-webpack-plugin');
 const csspl = require('extract-text-webpack-plugin');
