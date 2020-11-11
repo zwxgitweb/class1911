@@ -6,7 +6,7 @@ let swiper_wrapper = document.querySelector('.swiper-wrapper');
 import "./index.css";
 import Axios from 'axios';
 import Swiper from 'swiper';
-import 'swiper/css/swipre.css';
+import 'swiper/css/swiper.css';
 Axios.get('/api/list').then(res => {
     let list = res.data.list;
     let imgs = res.data.img;
